@@ -7,19 +7,14 @@ using namespace boost;
 
 int main()
 {
-  adjacency_list<> g;
+  adjacency_list<vecS, vecS, undirectedS> g;
+
+  enum { topLeft, topRight, bottomRight, bottomLeft };
   
-  adjacency_list<>::vertex_descriptor v1 = add_vertex(g);
-  adjacency_list<>::vertex_descriptor v2 = add_vertex(g);
-  adjacency_list<>::vertex_descriptor v3 = add_vertex(g);
-  adjacency_list<>::vertex_descriptor v4 = add_vertex(g);
-
-  std::pair<adjacency_list<>::edge_descriptor, bool> r;
-
-  r = add_edge(v1, v2, g);
-  r = add_edge(v2, v3, g);
-  r = add_edge(v3, v4, g);
-  r = add_edge(v4, v1, g);
+  add_edge(topLeft, topRight, g);
+  add_edge(topRight, bottomRight, g);
+  add_edge(bottomRight, bottomLeft, g);
+  add_edge(bottomLeft, topLeft, g);
   
   auto p = edges(g);
   for (auto it = p.first; it != p.second; ++it)
