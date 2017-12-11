@@ -22,13 +22,9 @@ int main()
   for (auto it = p.first; it != p.second; ++it)
     std::cout << *it << std::endl;
 
-  queue<Graph::vertex_descriptor> q;
-  
   bfs_visitor<null_visitor> vis;
-
-  std::array<default_color_type, 4> colormap;
-
-  breadth_first_search(g, topLeft, q, vis, colormap.data());
+  
+  breadth_first_search(g, topLeft, visitor(vis));
   
   return 0;
 }
